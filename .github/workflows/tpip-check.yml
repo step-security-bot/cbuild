@@ -15,7 +15,8 @@ env:
   tpip_report: "third_party_licenses.md"
 
 # Declare default permissions as read only.
-# permissions: read-all
+permissions:
+  pull-requests: write
 
 jobs:
   check-licenses:
