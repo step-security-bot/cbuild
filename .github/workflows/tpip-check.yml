@@ -15,8 +15,8 @@ env:
   tpip_report: "third_party_licenses.md"
 
 # Declare default permissions as read only.
-permissions:
-  pull-requests: write
+#permissions: read-all
+
 
 jobs:
   check-licenses:
@@ -24,9 +24,10 @@ jobs:
     if: github.repository == 'soumeh01/cbuild'
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    #permissions:
-      #checks: write
-      #pull-requests: write
+    permissions:
+      checks: write
+      pull-requests: write
+      actions: write
     steps:
       - uses: actions/checkout@v4.1.1
 
