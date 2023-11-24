@@ -98,7 +98,7 @@ func (b CSolutionBuilder) installMissingPacks() (err error) {
 		if pack == "" {
 			continue
 		}
-		args = []string{"pack", "add", pack, "--force-reinstall", "--agree-embedded-license"}
+		args = []string{"add", pack, "--force-reinstall", "--agree-embedded-license"}
 		cpackgetBin := filepath.Join(b.InstallConfigs.BinPath, "cpackget"+b.InstallConfigs.BinExtn)
 		if _, err := os.Stat(cpackgetBin); os.IsNotExist(err) {
 			log.Error("cpackget was not found")
@@ -141,7 +141,9 @@ func (b CSolutionBuilder) getSelectedContexts(filePath string) ([]string, error)
 	if b.Options.UseContextSet {
 		data, err := utils.ParseCbuildSetFile(filePath)
 		if err == nil {
-			contexts = append(contexts, data.ContextSet.Contexts...)
+			for _, context := range data.ContextSet.Contexts {
+				contexts = append(contexts, context.Context)
+			}
 		}
 		retErr = err
 	} else {
