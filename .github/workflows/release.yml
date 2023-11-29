@@ -10,6 +10,9 @@ permissions: read-all
 
 jobs:
   test:
+    permissions:
+      checks: write
+      pull-requests: write
     uses: Open-CMSIS-Pack/cbuild/.github/workflows/test.yml@main
 
   goreleaser:
